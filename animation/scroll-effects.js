@@ -92,3 +92,62 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+// Efeito de entrada dos cards
+document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll('.card');
+    
+    // Atribui ordem de animação
+    cards.forEach((card, index) => {
+        card.style.setProperty('--order', index);
+        
+        // Efeito de acompanhamento do mouse
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+    
+    // Intersection Observer para animação
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    cards.forEach(card => observer.observe(card));
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Efeito de digitação para palavras-chave
+    document.querySelectorAll('.keyword').forEach(keyword => {
+        const originalText = keyword.textContent;
+        keyword.textContent = '';
+        
+        let i = 0;
+        const typing = setInterval(() => {
+            if (i < originalText.length) {
+                keyword.textContent += originalText.charAt(i);
+                i++;
+            } else {
+                clearInterval(typing);
+            }
+        }, 100);
+    });
+    
+    // Efeito de brilho aleatório
+    setInterval(() => {
+        const keywords = document.querySelectorAll('.keyword');
+        const randomIndex = Math.floor(Math.random() * keywords.length);
+        keywords[randomIndex].style.animation = 'pulseText 0.5s';
+        
+        setTimeout(() => {
+            keywords[randomIndex].style.animation = 'pulseText 2s infinite alternate';
+        }, 500);
+    }, 3000);
+});

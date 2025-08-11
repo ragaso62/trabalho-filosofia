@@ -89,3 +89,32 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Efeito de digitação para palavras-chave
+    document.querySelectorAll('.keyword').forEach(keyword => {
+        const originalText = keyword.textContent;
+        keyword.textContent = '';
+        
+        let i = 0;
+        const typing = setInterval(() => {
+            if (i < originalText.length) {
+                keyword.textContent += originalText.charAt(i);
+                i++;
+            } else {
+                clearInterval(typing);
+            }
+        }, 100);
+    });
+    
+    // Efeito de brilho aleatório
+    setInterval(() => {
+        const keywords = document.querySelectorAll('.keyword');
+        const randomIndex = Math.floor(Math.random() * keywords.length);
+        keywords[randomIndex].style.animation = 'pulseText 0.5s';
+        
+        setTimeout(() => {
+            keywords[randomIndex].style.animation = 'pulseText 2s infinite alternate';
+        }, 500);
+    }, 3000);
+});
