@@ -1,0 +1,135 @@
+/* Tema Vermelho/Amarelo - Efeito "Fogo" */
+.classe-page {
+    --accent-primary: #D32F2F;
+    --accent-secondary: #FFA000;
+    --accent-glow: rgba(255, 213, 79, 0.6);
+    --bg-dark: #111;
+    --text-primary: #fff;
+    --text-secondary: #eee;
+}
+
+/* Efeito de Chamas no Fundo */
+.classe-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(211, 47, 47, 0.15) 0%, transparent 25%),
+        radial-gradient(circle at 80% 20%, rgba(255, 160, 0, 0.15) 0%, transparent 25%);
+    z-index: -1;
+    animation: firePulse 8s infinite alternate;
+}
+
+@keyframes firePulse {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.7; }
+}
+
+/* Animação de Titulo - Efeito "Queimando" */
+h1 {
+    position: relative;
+    text-shadow: 0 0 10px var(--accent-primary), 
+                 0 0 20px var(--accent-secondary);
+    animation: textBurn 3s infinite alternate;
+}
+
+@keyframes textBurn {
+    0% { text-shadow: 0 0 10px var(--accent-primary); }
+    100% { text-shadow: 0 0 30px var(--accent-secondary), 
+                       0 0 50px rgba(255, 160, 0, 0.5); }
+}
+
+/* Cards com Efeito de Papel Queimado */
+.classe-card {
+    background: 
+        linear-gradient(rgba(30, 30, 30, 0.9), rgba(30, 30, 30, 0.9)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="rgba(211,47,47,0.05)" d="M0 0 L100 0 L100 100 L0 100 Z M10 10 Q50 5 90 10 T90 90 Q50 95 10 90 Z"/></svg>');
+    border: 1px solid var(--accent-primary);
+    box-shadow: 0 5px 15px rgba(211, 47, 47, 0.3),
+                inset 0 0 20px rgba(255, 160, 0, 0.1);
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.classe-card:hover {
+    transform: translateY(-5px) rotate(0.5deg);
+    box-shadow: 0 10px 30px rgba(211, 47, 47, 0.5),
+                inset 0 0 30px rgba(255, 160, 0, 0.2);
+}
+
+/* Efeito de Borda Animada */
+.classe-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    animation: borderFlow 3s infinite linear;
+}
+
+@keyframes borderFlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Timeline com Efeito de Faíscas */
+.timeline::before {
+    background: linear-gradient(to bottom, 
+        var(--accent-primary), 
+        var(--accent-secondary),
+        var(--accent-primary));
+    animation: sparkle 2s infinite linear;
+}
+
+@keyframes sparkle {
+    0% { box-shadow: 0 0 5px var(--accent-primary); }
+    50% { box-shadow: 0 0 20px var(--accent-secondary); }
+    100% { box-shadow: 0 0 5px var(--accent-primary); }
+}
+
+/* Barras de Estatística - Efeito Lava */
+.stat-bar .bar {
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-bar .bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent);
+    animation: lavaFlow 3s infinite linear;
+}
+
+@keyframes lavaFlow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Roda de Soluções - Efeito Orbital */
+.solutions-wheel {
+    perspective: 1000px;
+}
+
+.solution {
+    transform-style: preserve-3d;
+    animation: orbit 20s infinite linear;
+    animation-delay: calc(var(--angle) * -1s);
+}
+
+@keyframes orbit {
+    from { transform: rotateY(0deg) translateX(100px) rotateY(0deg); }
+    to { transform: rotateY(360deg) translateX(100px) rotateY(-360deg); }
+}

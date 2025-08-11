@@ -3,72 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classe Social</title>
+    <title>Classe Social - Representações na Mídia</title>
     <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/classe.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-<header class="header-top">
-    <div class="nav-container">
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Início</a></li>
-                <li><a href="raca.html">Raça</a></li>
-                <li><a href="genero.html">Gênero</a></li>
-                <li><a href="classe.html">Classe</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<body class="classe-page">
+    <div class="scanline"></div>
+    
+    <header class="header-top">
+        <div class="nav-container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="raca.html">Raça</a></li>
+                    <li><a href="genero.html">Gênero</a></li>
+                    <li><a href="classe.html" class="active">Classe</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <main>
-        <h1>Classe Social</h1>
+        <h1>CLASSE SOCIAL <span class="classe-title">E DESIGUALDADE</span></h1>
+        
+        <div class="classe-grid">
+            <!-- Card Timeline -->
+            <section class="classe-card wide-card animate-on-scroll">
+                <h2><span class="keyword">EVOLUÇÃO HISTÓRICA</span></h2>
+                <div class="timeline">
+                    <div class="timeline-item animate-on-scroll delay-1">
+                        <h3><span class="class-icon">🟥</span> Década de 1950</h3>
+                        <p>Representação de classes baixas como <span class="keyword">pobres</span> ou <span class="highlight">trabalhadores explorados</span>.</p>
+                    </div>
+                    <div class="timeline-item animate-on-scroll delay-2">
+                        <h3><span class="class-icon">🟨</span> Década de 1980</h3>
+                        <p>Classes altas retratadas como <span class="keyword">vilões</span> ou <span class="highlight">exploradores</span>.</p>
+                    </div>
+                    <div class="timeline-item animate-on-scroll delay-3">
+                        <h3><span class="class-icon">🟥</span> Anos 2000</h3>
+                        <p>Ascensão social como <span class="highlight">exceção</span> e não regra.</p>
+                    </div>
+                </div>
+            </section>
 
-        <section>
-            <h2>Introdução</h2>
-            <p>A mídia reforça divisões sociais, retratando classes de maneira exagerada e estigmatizante.</p>
-        </section>
+            <!-- Card Estereótipos -->
+            <section class="classe-card animate-on-scroll">
+                <h2><span class="keyword">ESTEREÓTIPOS</span></h2>
+                <div class="stereotypes-container">
+                    <div class="stereotype-box lower-class animate-on-scroll delay-1">
+                        <span class="class-icon">🟥</span>
+                        <h3>Classe Baixa</h3>
+                        <ul>
+                            <li>Vestimentas rasgadas</li>
+                            <li>Ambientes precários</li>
+                            <li>Falta de educação</li>
+                        </ul>
+                    </div>
+                    <div class="stereotype-box upper-class animate-on-scroll delay-2">
+                        <span class="class-icon">🟨</span>
+                        <h3>Classe Alta</h3>
+                        <ul>
+                            <li>Luxo excessivo</li>
+                            <li>Poder político</li>
+                            <li>Frieza emocional</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-        <section>
-            <h2>Estereótipos</h2>
-            <ul>
-                <li>Classe baixa: roupas rasgadas, miséria, incapacidade de mudar.</li>
-                <li>Classe alta: luxo, roupas caras, joias e poder.</li>
-            </ul>
-        </section>
+            <!-- Card Estatísticas -->
+            <section class="classe-card tall-card animate-on-scroll">
+                <h2><span class="keyword">EM NÚMEROS</span></h2>
+                <div class="stats-visual">
+                    <div class="stat-bar animate-on-scroll delay-1" style="--percentage: 85%">
+                        <label>Personagens classe alta 85%</label>
+                        <div class="bar"></div>
+                    </div>
+                    <div class="stat-bar animate-on-scroll delay-2" style="--percentage: 15%">
+                        <label>Personagens classe baixa 15%</label>
+                        <div class="bar"></div>
+                    </div>
+                    <div class="stat-bar animate-on-scroll delay-3" style="--percentage: 5%">
+                        <label>Mobilidade social 5%</label>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+            </section>
 
-        <section>
-            <h2>Consequências</h2>
-            <p>Cria conflitos e divisões sociais, estigmatizando condições econômicas.</p>
-        </section>
-
-        <section>
-            <h2>Soluções</h2>
-            <p>Políticas públicas, acesso à educação e incentivo ao pensamento crítico.</p>
-        </section>
-
-        <div style="margin-top: 20px;">
-            <a href="genero.html">← Anterior</a>
+            <!-- Card Soluções -->
+            <section class="classe-card animate-on-scroll">
+                <h2><span class="keyword">SOLUÇÕES</span></h2>
+                <div class="solutions-wheel">
+                    <div class="solution" style="--angle: 0deg">
+                        <div class="solution-point"></div>
+                        <p>Representação realista</p>
+                    </div>
+                    <div class="solution" style="--angle: 120deg">
+                        <div class="solution-point"></div>
+                        <p>Políticas públicas</p>
+                    </div>
+                    <div class="solution" style="--angle: 240deg">
+                        <div class="solution-point"></div>
+                        <p>Educação crítica</p>
+                    </div>
+                    <div class="center-circle"></div>
+                </div>
+            </section>
         </div>
     </main>
 
-<footer>
-    <div class="footer-content">
-        <div class="footer-info">
-            <p>Trabalho de Filosofia | Análise de Representações Midíaticas</p>
-            <p>Todos os direitos reservados © 2025</p>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>Trabalho de Filosofia | Análise de Representações Midíaticas</p>
+                <p>Todos os direitos reservados © 2025</p>
+            </div>
+            <div class="footer-authors">
+                <p>Desenvolvido por:</p>
+                <ul>
+                    <li>Lucas Raphael</li>
+                    <li>Diego Alexandre</li>
+                    <li>Juliano Ramires</li>
+                    <li>Sándyla Saraiva</li>
+                    <li>Fernando Rosa</li>
+                </ul>
+            </div>
         </div>
-        <div class="footer-authors">
-            <p>Desenvolvido por:</p>
-            <ul>
-                <li>Lucas Raphael</li>
-                <li>Diego Alexandre</li>
-                <li>Juliano Ramires</li>
-                <li>Sándyla Saraiva</li>
-                <li>Fernando Rosa</li>
-            </ul>
-        </div>
-    </div>
-</footer>
+    </footer>
+
+    <script src="js/scroll-effects.js"></script>
+    <script src="js/classe.js"></script>
+    <script src="js/animation.js"></script>
 </body>
 </html>

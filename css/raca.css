@@ -1,0 +1,301 @@
+h1.raca-title {
+    background: linear-gradient(to right, #4CAF50, #2E7D32);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+    padding: 10px 0;
+    margin: 20px 0;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    border-bottom: 3px solid #2E7D32;
+    display: inline-block;
+    width: 100%;
+}
+
+h1.raca-title {
+    color: #2E7D32;
+    text-align: center;
+    padding: 10px 0;
+    margin: 20px 0;
+    font-size: 2.5rem;
+    border-bottom: 3px solid #4CAF50;
+    display: inline-block;
+    width: 100%;
+}
+/* Efeitos para os Cards da Raça */
+.card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+    background: linear-gradient(135deg, rgba(15, 15, 25, 0.8), rgba(10, 10, 20, 0.9));
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        var(--accent-neon), 
+        var(--accent-blue),
+        transparent 70%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8),
+                0 0 0 1px rgba(204, 255, 0, 0.3),
+                inset 0 0 20px rgba(204, 255, 0, 0.1);
+}
+
+.card:hover::before {
+    opacity: 0.6;
+    animation: borderGlow 2s linear infinite;
+}
+
+@keyframes borderGlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.card h2 {
+    position: relative;
+    display: inline-block;
+}
+
+.card h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-neon), transparent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.6s ease;
+}
+
+.card:hover h2::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Efeito de entrada dos cards */
+.card {
+    opacity: 0;
+    transform: translateY(50px) rotateX(30deg);
+    transition-delay: calc(var(--order) * 0.1s);
+}
+
+.card.visible {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+}
+
+/* Efeito nos itens da lista */
+.card ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    transition: all 0.4s ease;
+}
+
+.card ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    color: var(--accent-blue);
+    transition: all 0.4s ease;
+}
+
+.card ul li:hover {
+    color: var(--accent-neon);
+    transform: translateX(10px);
+}
+
+.card ul li:hover::before {
+    color: var(--accent-neon);
+    transform: scale(1.5);
+}
+
+/* Efeito de brilho no fundo */
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at var(--mouse-x) var(--mouse-y),
+        rgba(204, 255, 0, 0.1),
+        transparent 60%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.card:hover::after {
+    opacity: 1;
+}
+
+/* Estilo para palavras-chave */
+.keyword {
+    position: relative;
+    color: var(--accent-neon);
+    font-weight: 700;
+    text-transform: uppercase;
+    z-index: 1;
+    text-shadow: 0 0 10px var(--accent-neon);
+    animation: pulseText 2s infinite alternate;
+}
+
+.keyword::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-blue);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease;
+    z-index: -1;
+}
+
+.keyword:hover {
+    animation: none;
+    text-shadow: 0 0 20px var(--accent-neon);
+}
+
+.keyword:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+@keyframes pulseText {
+    0% { text-shadow: 0 0 5px var(--accent-neon); }
+    100% { text-shadow: 0 0 15px var(--accent-neon), 
+                        0 0 30px rgba(204, 255, 0, 0.4); }
+}
+
+/* Efeito de destaque para listas */
+.card ul li strong {
+    color: var(--accent-blue);
+    font-weight: 700;
+    position: relative;
+    padding: 0 3px;
+}
+
+.card ul li strong::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 255, 136, 0.1);
+    border-radius: 3px;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease;
+}
+
+.card ul li:hover strong {
+    color: var(--accent-neon);
+}
+
+.card ul li:hover strong::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Destaque para parágrafos */
+.card p .highlight {
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(204, 255, 0, 0.15) 20%, 
+        rgba(0, 255, 136, 0.15) 80%, 
+        transparent);
+    padding: 0 8px;
+    border-radius: 4px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+/* ===== TEMA AZUL PARA PÁGINA DE RAÇA ===== */
+.raca-page {
+    --accent-neon: #00a8ff;       /* Azul neon */
+    --accent-blue: #0097e6;       /* Azul mais escuro */
+    --bg-dark: #0a1a2e;           /* Azul escuro para o fundo */
+}
+
+.raca-page body::before {
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 168, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(0, 151, 230, 0.15) 0%, transparent 40%);
+}
+
+.raca-page .card {
+    border: 1px solid rgba(0, 168, 255, 0.3);
+    background: rgba(15, 30, 45, 0.9);
+}
+
+.raca-page .card:hover::before {
+    background: linear-gradient(45deg, var(--accent-neon), var(--accent-blue), transparent 70%);
+}
+
+.raca-page .keyword {
+    color: var(--accent-neon);
+    text-shadow: 0 0 10px var(--accent-neon);
+}
+
+.raca-page .keyword:hover {
+    text-shadow: 0 0 20px var(--accent-neon);
+}
+
+.raca-page .btn::before {
+    background: linear-gradient(45deg, var(--accent-neon), var(--accent-blue));
+}
+
+.raca-page .btn:hover {
+    box-shadow: 0 10px 30px rgba(0, 168, 255, 0.5);
+}
+
+.raca-page .card h2 {
+    background: linear-gradient(90deg, var(--accent-neon), var(--accent-blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.raca-page .card li::before {
+    color: var(--accent-blue);
+}
+
+.raca-page .card ul li strong {
+    color: var(--accent-blue);
+}
+
+.raca-page .card ul li:hover strong {
+    color: var(--accent-neon);
+}
+
+.raca-page .card p .highlight {
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(0, 168, 255, 0.15) 20%, 
+        rgba(0, 151, 230, 0.15) 80%, 
+        transparent);
+}
