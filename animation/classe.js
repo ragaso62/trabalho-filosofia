@@ -1,57 +1,117 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Efeito de chamas nos cards
-    const cards = document.querySelectorAll('.classe-card');
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            card.style.setProperty('--mouse-x', x);
-            card.style.setProperty('--mouse-y', y);
-            
-            // Efeito de distorção térmica
-            card.querySelectorAll('h2, p, li').forEach(text => {
-                text.style.transform = `translate(
-                    ${(x - rect.width/2) * 0.01}px, 
-                    ${(y - rect.height/2) * 0.01}px
-                )`;
-            });
+document.addEventListener('DOMContentLoaded', function() {
+    // Função para forçar a exibição inicial
+    function forceVisible() {
+        document.querySelectorAll('.classe-card').forEach(card => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
         });
         
-        card.addEventListener('mouseleave', () => {
-            card.querySelectorAll('h2, p, li').forEach(text => {
-                text.style.transform = 'none';
-            });
-        });
-    });
-
-    // Efeito de digitação com variação
-    const keywords = document.querySelectorAll('.keyword');
-    keywords.forEach((keyword, i) => {
-        const text = keyword.textContent;
-        keyword.textContent = '';
-        
-        let j = 0;
-        const typing = setInterval(() => {
-            if (j < text.length) {
-                keyword.textContent += text[j];
-                j++;
-                // Efeito de tecla aleatória
-                keyword.style.transform = `translateY(${Math.random() * 5}px)`;
-            } else {
-                clearInterval(typing);
-                keyword.style.transform = 'none';
+        document.querySelectorAll('.stat-bar').forEach(bar => {
+            bar.style.opacity = '1';
+            bar.style.transform = 'translateX(0)';
+            const barFill = bar.querySelector('.bar');
+            if (barFill) {
+                barFill.style.width = bar.style.getPropertyValue('--percentage');
             }
-        }, 100 + Math.random() * 100);
-    });
+        });
+        
+        document.querySelectorAll('.solutions-wheel .solution, .solutions-wheel .center-circle').forEach(el => {
+            el.classList.add('animated');
+        });
+    }
 
-    // Efeito de tremulação nas barras
-    const bars = document.querySelectorAll('.stat-bar .bar');
-    bars.forEach(bar => {
-        setInterval(() => {
-            const fluctuation = Math.random() * 5;
-            bar.style.height = `calc(20px + ${fluctuation}px)`;
-        }, 300);
-    });
+    // Configura o Intersection Observer como fallback
+    function setupObservers() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    
+                    if (entry.target.classList.contains('stat-bar')) {
+                        const bar = entry.target.querySelector('.bar');
+                        if (bar) {
+                            bar.style.width = entry.target.style.getPropertyValue('--percentage');
+                        }
+                    }
+                    
+                    if (entry.target.classList.contains('solutions-wheel')) {
+                        const solutions = entry.target.querySelectorAll('.solution');
+                        const center = entry.target.querySelector('.center-circle');
+                        
+                        solutions.forEach((sol, index) => {
+                            setTimeout(() => {
+                                sol.classList.add('animated');
+                            }, index * 200);
+                        });
+                        
+                        if (center) {
+                            setTimeout(() => {
+                                center.classList.add('animated');
+                            }, solutions.length * 200);
+                        }
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.classe-card, .stat-bar, .solutions-wheel').forEach(el => {
+            observer.observe(el);
+        });
+    }
+
+    // Efeito gradiente dinâmico
+    function setupHoverEffects() {
+        document.querySelectorAll('.classe-card').forEach(card => {
+            const gradient = card.querySelector('.hover-gradient');
+            if (!gradient) return;
+            
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+                
+                gradient.style.left = `${x}px`;
+                gradient.style.top = `${y}px`;
+            });
+        });
+    }
+
+    // Inicializa tudo
+    forceVisible(); // Garante que tudo esteja visível
+    setupObservers(); // Configura os observadores
+    setupHoverEffects(); // Ativa os efeitos de hover
+
+    // Fallback adicional
+    setTimeout(() => {
+        forceVisible();
+    }, 1000);
 });
+
+// Dentro do seu observer para solutions-wheel
+if (entry.target.classList.contains('solutions-wheel')) {
+    const solutions = entry.target.querySelectorAll('.solution');
+    const center = entry.target.querySelector('.center-circle');
+    
+    solutions.forEach((sol, index) => {
+        setTimeout(() => {
+            sol.style.opacity = '1';
+            sol.style.transform = 'scale(1)';
+            
+            // Garante que o texto fique visível
+            const text = sol.querySelector('p');
+            if (text) {
+                text.style.opacity = '1';
+                text.style.visibility = 'visible';
+            }
+        }, index * 200);
+    });
+    
+    if (center) {
+        setTimeout(() => {
+            center.style.opacity = '1';
+        }, solutions.length * 200);
+    }
+}
